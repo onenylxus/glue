@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GLUELib.Types;
+﻿namespace GLUELib.Types;
 
 // ASCII type
 public class A : GLUEType
@@ -27,7 +25,7 @@ public class A : GLUEType
     return $"A:{Length()}(\"{_value}\")";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -68,7 +66,7 @@ public class B : GLUEType
     return $"B:{Length()}({string.Join(",", _value.Select(v => $"0x{v:X2}"))})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -109,7 +107,7 @@ public class F4 : GLUEType
     return $"F4:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -150,7 +148,7 @@ public class F8 : GLUEType
     return $"F8:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -191,7 +189,7 @@ public class I1 : GLUEType
     return $"I1:{Length()}({_value})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -232,7 +230,7 @@ public class I2 : GLUEType
     return $"I2:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -273,7 +271,7 @@ public class I4 : GLUEType
     return $"I4:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -314,7 +312,7 @@ public class I8 : GLUEType
     return $"I8:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -323,29 +321,29 @@ public class I8 : GLUEType
 // List type
 public class L : GLUEType
 {
-  private readonly List<GLUEType> _list;
+  private readonly List<GLUENode> _list;
 
-  private L(List<GLUEType> list)
+  private L(List<GLUENode> list)
   {
     _list = list;
   }
 
-  public static implicit operator L(List<GLUEType> list)
+  public static implicit operator L(List<GLUENode> list)
   {
     return new L(list);
   }
 
-  public static implicit operator List<GLUEType>(L gtype)
+  public static implicit operator List<GLUENode>(L gtype)
   {
     return gtype._list;
   }
 
   public override string ToString()
   {
-    return $"L:{Length()}({string.Join(",", _list.ConvertAll<string>(v => v.ToString()!))})";
+    return $"L:{Length()}({string.Join(",", _list)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _list.Count;
   }
@@ -386,7 +384,7 @@ public class TF : GLUEType
     return $"TF:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -427,7 +425,7 @@ public class U1 : GLUEType
     return $"U1:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -468,7 +466,7 @@ public class U2 : GLUEType
     return $"U2:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -509,7 +507,7 @@ public class U4 : GLUEType
     return $"U4:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
@@ -550,7 +548,7 @@ public class U8 : GLUEType
     return $"U8:{Length()}({string.Join(",", _value)})";
   }
 
-  public int Length()
+  public override int Length()
   {
     return _value.Length;
   }
